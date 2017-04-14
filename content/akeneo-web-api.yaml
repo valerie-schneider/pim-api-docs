@@ -12,7 +12,7 @@ produces:
 paths:
   /products:
     get:
-      summary: Get list of products
+      summary: Get a list of products
       operationId: "products_get_list"
       tags:
         - Products
@@ -36,7 +36,7 @@ paths:
         - name: attributes
           in: query
           type: string
-          description: Filter product values to only return those concerning the given attributes, for more details see the <a href="/documentation/filter.html#filter-product-values">Filter on product values</a> section
+          description: Filter product values to only return those regarding the given attributes, for more details see the <a href="/documentation/filter.html#filter-product-values">Filter on product values</a> section
           required: false
         - $ref: '#/parameters/pagination_type'
         - $ref: '#/parameters/page'
@@ -45,7 +45,7 @@ paths:
         - $ref: '#/parameters/with_count'
       responses:
         200:
-          description: Return products paginated
+          description: Returns paginated products
           schema:
             title: Products
             type: object
@@ -363,7 +363,7 @@ paths:
       operationId: "products_patch"
       tags:
         - Products
-      description: This endpoint allows you to update a given product. Know more about <a href="/documentation/update.html#update-behavior">Update behavior</a>. Note that if no product exists for the given identifier, it creates it.
+      description: This endpoint allows you to update a given product. Learn more about <a href="/documentation/update.html#update-behavior">Update behavior</a>. Note that if no product exists for the given identifier, it creates it.
       parameters:
         - $ref: '#/parameters/code'
         - name: body
@@ -404,7 +404,7 @@ paths:
 
   /categories:
     get:
-      summary: Get list of categories
+      summary: Get a list of categories
       operationId: "categories_get_list"
       description: This endpoint allows you to get a list of categories. Categories are paginated and sorted by `root/left`.
       tags:
@@ -644,7 +644,7 @@ paths:
 
   /families:
     get:
-      summary: Get list of families
+      summary: Get a list of families
       operationId: "families_get_list"
       description: This endpoint allows you to get a list of families. Families are paginated and sorted by code.
       tags:
@@ -850,7 +850,7 @@ paths:
 
   /attributes:
     get:
-      summary: Get list of attributes
+      summary: Get a list of attributes
       operationId: "attributes_get_list"
       description: This endpoint allows you to get a list of attributes. Attributes are paginated and sorted by code.
       tags:
@@ -1092,7 +1092,7 @@ paths:
 
   /attributes/{attribute_code}/options:
     get:
-      summary: Get list of attribute options
+      summary: Get a list of attribute options
       operationId: "attribute_options_get_list"
       description: This endpoint allows you to get a list of attribute options. Attribute options are paginated and sorted by code.
       tags:
@@ -1713,36 +1713,36 @@ definitions:
         description: Product identifier, i.e. the value of the only `pim_catalog_identifier` attribute
       enabled:
         type: boolean
-        description: Whether the product is enable
+        description: Whether the product is enabled
         default: true
       family:
         type: string
-        description: Family code from which the product inherits its attributes and attributes requirements
-        x-validation-rules: It is equal to an existing family code
+        description: Family code from which the product inherits its attributes and attribute requirements
+        x-validation-rules: It matches an existing family code
         default: "null"
       categories:
         type: array
         description: Codes of the categories in which the product is classified
-        x-validation-rules: Each string of the array is equal to an existing category code
+        x-validation-rules: Each string of the array matches an existing category code
         items:
           type: string
         default: []
       groups:
         type: array
-        description: Codes of the groups to which the product belong
-        x-validation-rules: Each string of the array is equal to an existing group code
+        description: Codes of the groups to which the product belongs
+        x-validation-rules: Each string of the array matches an existing group code
         items:
           type: string
         default: []
       variant_group:
         type: string
         description: Code of the variant group in which the product is
-        x-validation-rules: It is equal to an existing variant group code
+        x-validation-rules: It matches an existing variant group code
         default: "null"
       values:
         type: object
-        description: "Product attributes values, see <a href='/documentation/resources.html#product-values'>Product values</a> section for more details"
-        x-validation-rules: Validation rules detailed in Product values section
+        description: "Product attribute values, see the <a href='/documentation/resources.html#product-values'>Product values</a> section for more details"
+        x-validation-rules: Validation rules detailed in the Product values section
         properties:
           attributeCode:
             type: array
@@ -1768,7 +1768,7 @@ definitions:
             properties:
               groups:
                 type: array
-                description: Array of groups codes with which the product is in relation
+                description: Array of groups' codes with which the product is in relation
                 items:
                   type: string
               products:
@@ -1918,7 +1918,7 @@ definitions:
       attribute_as_label:
         type: string
         description: Attribute code used as label
-        x-validation-rules: "&bull; It is equal to an existing attribute code &#10;&bull; This attribute code is in the array of the property `attributes` &#10;&bull; The type of this attribute is either `pim_catalog_identifier` or `pim_catalog_text`"
+        x-validation-rules: "&bull; It matches an existing attribute code &#10;&bull; This attribute code is in the array of the property `attributes` &#10;&bull; The type of this attribute is either `pim_catalog_identifier` or `pim_catalog_text`"
       attributes:
         type: array
         description: Attributes codes that compose the family
@@ -2025,12 +2025,12 @@ definitions:
       validation_rule:
         type: string
         description: Validation rule type used to validate any attribute value when the attribute type is `pim_catalog_text` or `pim_catalog_identifier`
-        x-validation-rules: Equal to `regexp` when the attribute type is equal to `pim_catalog_identifier`
+        x-validation-rules: Equal to `regexp` when the attribute type matches `pim_catalog_identifier`
         x-warning: Only for `pim_catalog_text` or `pim_catalog_identifier` attribute types
       validation_regexp:
         type: string
         description: Regexp expression used to validate any attribute value when the attribute type is `pim_catalog_text` or `pim_catalog_identifier`
-        x-validation-rules: Required when the property `validation_rule` is equal to `regexp`
+        x-validation-rules: Required when the property `validation_rule` matches `regexp`
         x-warning: Only for `pim_catalog_text` or `pim_catalog_identifier` attribute types
       wysiwyg_enabled:
         type: boolean
@@ -2427,7 +2427,7 @@ responses:
     }
   406Error:
     description: Not Acceptable
-    x-details: The `Accept` header is not `application/json` but it should
+    x-details: The `Accept` header is not `application/json` but it should be
     schema:
       $ref: "#/definitions/Error"
     examples:  {
@@ -2445,7 +2445,7 @@ responses:
     }
   415Error:
     description: Unsupported Media type
-    x-details: The `Content-type` header is not `application/json` but it should
+    x-details: The `Content-type` header is not `application/json` but it should be
     schema:
       $ref: "#/definitions/Error"
     examples: {
@@ -2454,7 +2454,7 @@ responses:
     }
   415ErrorStream:
     description: Unsupported Media type
-    x-details: The `Content-type` header is not `application/vnd.akeneo.collection+json` but it should
+    x-details: The `Content-type` header is not `application/vnd.akeneo.collection+json` but it should be
     schema:
       $ref: "#/definitions/Error"
     examples: {
@@ -2480,7 +2480,7 @@ parameters:
   pagination_type:
     name: pagination_type
     in: query
-    description: Pagination method type, see <a href="/documentation/pagination.html">Pagination</a> section
+    description: Pagination method type, see the <a href="/documentation/pagination.html">Pagination</a> section
     required: false
     type: string
     default: "page"
@@ -2489,21 +2489,21 @@ parameters:
   page:
     name: page
     in: query
-    description: Number of the page to retrieve when using the `page` pagination method type. <strong>Should never be set manually</strong>, see <a href="/documentation/pagination.html#pagination">Pagination</a> section
+    description: Number of the page to retrieve when using the `page` pagination method type. <strong>Should never be set manually</strong>, see the <a href="/documentation/pagination.html#pagination">Pagination</a> section
     required: false
     type: integer
     default: 1
   search_after:
     name: search_after
     in: query
-    description: Cursor when using the `search_after` pagination method type. <strong>Should never be set manually</strong>, see <a href="/documentation/pagination.html">Pagination</a> section
+    description: Cursor when using the `search_after` pagination method type. <strong>Should never be set manually</strong>, see the <a href="/documentation/pagination.html">Pagination</a> section
     required: false
     type: string
     default: "cursor to the first page"
   limit:
     name: limit
     in: query
-    description: Number of results by page, see <a href="/documentation/pagination.html">Pagination</a> section
+    description: Number of results by page, see the <a href="/documentation/pagination.html">Pagination</a> section
     required: false
     type: integer
     minimum: 1
@@ -2524,7 +2524,7 @@ parameters:
   with_count:
     name: with_count
     in: query
-    description: Return the count of products in the response. Be carefull with that, on a big catalog, it can decrease performance in a significative way
+    description: Return the product count in the response. Be careful with that, on a big catalog, it can decrease performance in a significative way
     default: false
     type: boolean
     required: false
